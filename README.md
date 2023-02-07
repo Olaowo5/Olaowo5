@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @Olaowo5
-- 👀 I’m interested in front end development and Unity game development
+- 👀 I’m interested in Software Programming and Unity game development
 - 🌱 I’m have work experience in Azure Cloud Solutions, including migration, back up and security
 
 <!---
