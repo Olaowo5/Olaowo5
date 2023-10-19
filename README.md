@@ -1,6 +1,7 @@
 - 👋 Hi, Olamide Here!
 - 👀 I’m interested in Software Programming and Unity development
 - 🌱 I have work experience in Azure Cloud Solutions, including migration, backup, DevOps and security
+- 👾 Currently working with a team using GitLab https://gitlab.com/Olaowo5
   
 
   <img src="https://komarev.com/ghpvc/?username=Olaowo5&style=flat-square&color=blue" alt="Visits to github profile"/>
