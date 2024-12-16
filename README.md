@@ -1,6 +1,6 @@
-- 👋 Hi, Olamide Here!
-- 👀 I’m interested in Software Programming and Unity development
-- 🌱 I have work experience in Azure Cloud Solutions, including migration, backup, DevOps and security
+- 👋 Hi, I’m Olamide!
+- 👀 I have a keen interest in Software Programming and Unity Development.
+- 🌱 My work experience encompasses Azure Cloud Solutions, with a focus on migration, backup, DevOps, and security.
 
   
 
