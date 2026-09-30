@@ -35,19 +35,6 @@ You can click the Preview link to take a look at your changes.
 
 ---
 
-## Current Pokémon Team
-
-<!-- Change with Actions → "Set profile Pokémon" → team -->
-<!-- TEAM:START -->
-<p align="center">
-  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/609.gif" alt="chandelure" title="chandelure" height="80"/>
-  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/784.gif" alt="kommo-o" title="kommo-o" height="80"/>
-  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/110.gif" alt="weezing" title="weezing" height="80"/>
-</p>
-<!-- TEAM:END -->
-
----
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Olaowo5/Olaowo5/HEAD/profile/snake-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Olaowo5/Olaowo5/HEAD/profile/snake.svg" />
