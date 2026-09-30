@@ -50,6 +50,52 @@ jobs:
             profile/snake.svg
             profile/snake-dark.svg?palette=github-dark
 
+      - name: Pause the snake between loops
+        env:
+          SNAKE_PAUSE_MINUTES: 10 # how long the full green graph shows before the snake eats again
+        run: |
+          python3 - profile/snake.svg profile/snake-dark.svg <<'PY'
+          import os, re, sys
+
+          pause_ms = float(os.environ.get("SNAKE_PAUSE_MINUTES", "10")) * 60_000
+
+          def fmt(p):
+              return f"{p:.6f}".rstrip("0").rstrip(".") + "%"
+
+          for path in sys.argv[1:]:
+              svg = open(path, encoding="utf-8").read()
+              if "<!--paused-->" in svg:
+                  continue  # already processed
+              m = re.search(r"animation:none (?:linear )?(\d+(?:\.\d+)?)ms", svg)
+              if not m:
+                  sys.exit(f"{path}: could not find the snake animation duration")
+              run = float(m.group(1))
+              total = run + pause_ms
+              f = run / total
+              rest_at = 100 * f + 100 * 100 / total  # 100ms after the snake finishes
+
+              # stretch every loop so it lasts run + pause
+              svg = re.sub(r"(animation:none (?:linear )?)\d+(?:\.\d+)?ms",
+                           lambda mm: f"{mm.group(1)}{total:.0f}ms", svg)
+
+              def squeeze(mm):
+                  name, body = mm.group(1), mm.group(2)
+                  frames, first, first_p = [], None, None
+                  for sel, style in re.findall(r"([\d.%,]+)\{([^}]*)\}", body):
+                      ps = [float(p.rstrip("%")) for p in sel.split(",")]
+                      if first_p is None or min(ps) < first_p:
+                          first_p, first = min(ps), style
+                      frames.append(",".join(fmt(p * f) for p in ps) + "{" + style + "}")
+                  # after the run, snap back to the starting look (full green grid) and hold it
+                  frames.append(f"{fmt(rest_at)},100%{{{first}}}")
+                  return "@keyframes " + name + "{" + "".join(frames) + "}"
+
+              svg = re.sub(r"@keyframes ([\w-]+)\{((?:[^{}]*\{[^{}]*\})*)\}", squeeze, svg)
+              svg = svg.replace("</svg>", "<!--paused--></svg>")
+              open(path, "w", encoding="utf-8").write(svg)
+              print(f"{path}: snake runs {run/1000:.1f}s, then holds the full graph for {pause_ms/60000:g} min")
+          PY
+
       - name: Commit cards
         run: |
           git config user.name "github-actions[bot]"
