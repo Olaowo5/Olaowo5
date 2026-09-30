@@ -1,0 +1,58 @@
+name: Set profile Pokémon
+
+on:
+  workflow_dispatch:
+    inputs:
+      pokemon:
+        description: "Pokémon name or Pokédex number (e.g. chandelure, kommo-o, 609)"
+        required: true
+        default: "chandelure"
+      shiny:
+        description: "Use the shiny sprite"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  set:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Swap sprite in README
+        env:
+          POKEMON: ${{ inputs.pokemon }}
+          SHINY: ${{ inputs.shiny }}
+        run: |
+          name=$(echo "$POKEMON" | tr '[:upper:]' '[:lower:]' | xargs | tr ' ' '-')
+          data=$(curl -sf "https://pokeapi.co/api/v2/pokemon/$name") \
+            || { echo "::error::'$POKEMON' not found on PokéAPI (try the Pokédex number)"; exit 1; }
+
+          key=front_default
+          [ "$SHINY" = "true" ] && key=front_shiny
+
+          # Prefer the animated Showdown sprite, fall back to official artwork, then the basic sprite
+          url=$(echo "$data" | jq -r --arg k "$key" '
+            .sprites.other.showdown[$k]
+            // .sprites.other["official-artwork"][$k]
+            // .sprites[$k]
+            // empty')
+          [ -z "$url" ] && { echo "::error::No sprite found for '$POKEMON'"; exit 1; }
+
+          display=$(echo "$data" | jq -r .name)
+          export TAG="<img align=\"right\" src=\"$url\" alt=\"$display\" height=\"110\"/>"
+          perl -0pi -e 's/(<!-- POKEMON:START -->).*?(<!-- POKEMON:END -->)/$1\n$ENV{TAG}\n$2/s' README.md
+
+          echo "DISPLAY=$display" >> "$GITHUB_ENV"
+          echo "Set profile Pokémon to $display → $url"
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Set profile Pokémon to $DISPLAY" || exit 0
+          git pull --rebase
+          git push
