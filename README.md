@@ -12,6 +12,8 @@
 
   <img src="https://komarev.com/ghpvc/?username=Olaowo5&style=flat-square&color=blue" alt="Visits to github profile"/>
 
+---
+
 ## Skills
 
 [![My Skills](https://skillicons.dev/icons?i=js,html,css,azure,aws,gcp,androidstudio,vscode,react,eclipse,php,py,unity,unreal,webflow,powershell,gradle,mysql,cs,dotnet,ts,nodejs,nestjs,flutter,dart,postgres,mongodb,docker,kubernetes,githubactions,jenkins&perline=8)](https://skillicons.dev)
@@ -19,12 +21,32 @@
 Olaowo5/Olaowo5 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 --->
+
+---
+
+## Stats
+
 <!-- Cards below are generated daily by .github/workflows/profile-cards.yml -->
 ![Olaowo5's GitHub stats](./profile/stats.svg)
 
 [![GitHub Streak](./profile/streak.svg)](https://git.io/streak-stats)
 
 ![Top Langs](./profile/top-langs.svg)
+
+---
+
+## Current Pokémon Team
+
+<!-- Change with Actions → "Set profile Pokémon" → team -->
+<!-- TEAM:START -->
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/609.gif" alt="chandelure" title="chandelure" height="80"/>
+  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/784.gif" alt="kommo-o" title="kommo-o" height="80"/>
+  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/110.gif" alt="weezing" title="weezing" height="80"/>
+</p>
+<!-- TEAM:END -->
+
+---
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Olaowo5/Olaowo5/HEAD/profile/snake-dark.svg" />
