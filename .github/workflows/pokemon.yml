@@ -47,7 +47,7 @@ jobs:
           [ -z "$url" ] && { echo "::error::No sprite found for '$POKEMON'"; exit 1; }
 
           display=$(echo "$data" | jq -r .name)
-          export TAG="<img align=\"right\" src=\"$url\" alt=\"$display\" height=\"110\"/>"
+          export TAG="<img align=\"right\" src=\"$url\" alt=\"$display\" width=\"100\"/>"
           perl -0pi -e 's/(<!-- POKEMON:START -->).*?(<!-- POKEMON:END -->)/$1\n$ENV{TAG}\n$2/s' README.md
 
           echo "DISPLAY=$display" >> "$GITHUB_ENV"
