@@ -8,11 +8,16 @@ on:
 permissions:
   contents: write
 
+# Never let the two profile workflows push at the same time
+concurrency:
+  group: profile-readme
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: GitHub stats card
         uses: readme-tools/github-readme-stats-action@v1
@@ -51,5 +56,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add profile/
           git commit -m "Update profile cards" || exit 0
-          git pull --rebase
-          git push
+          # Retry in case something else pushed to main at the same moment
+          for i in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 5
+          done
+          exit 1
