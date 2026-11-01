@@ -3,7 +3,7 @@
 </p>
 
 <!-- POKEMON:START -->
-<img align="right" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/6.gif" alt="charizard" width="100"/>
+<img align="right" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/323.gif" alt="camerupt" width="100"/>
 <!-- POKEMON:END -->
 
 - 👋 Hi, I’m Olamide!
